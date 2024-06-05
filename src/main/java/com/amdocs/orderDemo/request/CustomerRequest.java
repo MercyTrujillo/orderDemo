@@ -1,4 +1,4 @@
-package com.amdocs.orderDemo.feignClients.customer;
+package com.amdocs.orderDemo.request;
 
 public class CustomerRequest {
 

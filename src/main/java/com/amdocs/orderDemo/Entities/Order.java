@@ -18,16 +18,9 @@ public class Order {
     @Column(name = "orderId")
     private Integer orderId;
 
-    private String products;
-
-    private double pricing;
-
-
-    private Integer quantityProducts;
-
     private double discount;
 
-    private String customer;
+    private Integer customer;
 
     @CreatedDate
     @Column(name = "creationDate")
@@ -38,11 +31,8 @@ public class Order {
     }
 
 
-    public Order(Integer orderId, String products, double pricing, Integer quantityProducts, double discount, String customer, LocalDate creationDate) {
+    public Order(Integer orderId, double discount, Integer customer, LocalDate creationDate) {
         this.orderId = orderId;
-        this.products = products;
-        this.pricing = pricing;
-        this.quantityProducts = quantityProducts;
         this.discount = discount;
         this.customer = customer;
         this.creationDate = creationDate;
@@ -56,29 +46,6 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public String getProducts() {
-        return products;
-    }
-
-    public void setProducts(String products) {
-        this.products = products;
-    }
-
-    public double getPricing() {
-        return pricing;
-    }
-
-    public void setPricing(double pricing) {
-        this.pricing = pricing;
-    }
-
-    public Integer getQuantityProducts() {
-        return quantityProducts;
-    }
-
-    public void setQuantityProducts(Integer quantityProducts) {
-        this.quantityProducts = quantityProducts;
-    }
 
     public double getDiscount() {
         return discount;
@@ -88,11 +55,11 @@ public class Order {
         this.discount = discount;
     }
 
-    public String getCustomer() {
+    public Integer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(String customer) {
+    public void setCustomer(Integer customer) {
         this.customer = customer;
     }
 

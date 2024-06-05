@@ -1,4 +1,4 @@
-package com.amdocs.orderDemo.feignClients.customer;
+package com.amdocs.orderDemo.response;
 
 public class CustomerResponse {
 
@@ -8,11 +8,7 @@ public class CustomerResponse {
 
     private String address;
 
-    public CustomerResponse(String name, String lastName, String address) {
-        this.name = name;
-        this.lastName = lastName;
-        this.address = address;
-    }
+
 
     public String getName() {
         return name;
