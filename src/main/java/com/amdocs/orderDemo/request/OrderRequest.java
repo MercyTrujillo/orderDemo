@@ -12,12 +12,14 @@ public class OrderRequest {
 
     private Integer customerID;
 
+
     public OrderRequest(String products, double pricing, Integer quantityProducts, double discount,Integer customerID) {
         this.products = products;
         this.pricing = pricing;
         this.quantityProducts = quantityProducts;
         this.discount = discount;
         this.customerID = customerID;
+
     }
 
     public String getProducts() {
@@ -59,4 +61,7 @@ public class OrderRequest {
     public void setCustomerID(Integer customerID) {
         this.customerID = customerID;
     }
+
+
+
 }

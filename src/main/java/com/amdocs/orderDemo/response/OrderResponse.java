@@ -14,9 +14,11 @@ public class OrderResponse {
 
     private double discount;
 
-    private String customer;
+
 
     private CustomerResponse customerResponse;
+
+
 
     public OrderResponse(Order order) {
     }
@@ -65,13 +67,6 @@ public class OrderResponse {
         this.discount = discount;
     }
 
-    public String getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(String customer) {
-        this.customer = customer;
-    }
 
     public CustomerResponse getCustomerResponse() {
         return customerResponse;
@@ -80,4 +75,7 @@ public class OrderResponse {
     public void setCustomerResponse(CustomerResponse customerResponse) {
         this.customerResponse = customerResponse;
     }
+
+
+
 }

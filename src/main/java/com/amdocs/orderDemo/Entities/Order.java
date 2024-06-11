@@ -20,6 +20,7 @@ public class Order {
 
     private double discount;
 
+    @Column(name = "customer_Id")
     private Integer customer;
 
     @CreatedDate
