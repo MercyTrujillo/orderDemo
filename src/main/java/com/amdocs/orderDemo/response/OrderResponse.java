@@ -8,25 +8,24 @@ import java.util.List;
 public class OrderResponse {
 
     private Integer orderId;
+    private CustomerResponse customer;
     private List<ProductsResponse> products = new ArrayList<>();
 
-    private double pricing;
+    //private double pricing;
 
 
-    private Integer quantityProducts;
+    private Integer totalQuantityProducts;
 
-    private double discount;
 
-    private double tax;
 
     private double totalDiscount;
 
     private double totalPrice;
 
 
-    private CustomerResponse customer;
 
-    private ProductsResponse productsResponse;
+
+    //private ProductsResponse productsResponse;
 
     public OrderResponse(Order order) {
     }
@@ -59,20 +58,14 @@ public class OrderResponse {
         this.products = products;
     }
 
-    public double getPricing() {
-        return pricing;
+
+
+    public Integer getTotalQuantityProducts() {
+        return totalQuantityProducts;
     }
 
-    public void setPricing(double pricing) {
-        this.pricing = pricing;
-    }
-
-    public Integer getQuantityProducts() {
-        return quantityProducts;
-    }
-
-    public void setQuantityProducts(Integer quantityProducts) {
-        this.quantityProducts = quantityProducts;
+    public void setTotalQuantityProducts(Integer totalQuantityProducts) {
+        this.totalQuantityProducts = totalQuantityProducts;
     }
 
     public double getTotalDiscount() {
@@ -92,27 +85,6 @@ public class OrderResponse {
     }
 
 
-    public double getDiscount() {
-        return discount;
-    }
 
-    public void setDiscount(double discount) {
-        this.discount = discount;
-    }
 
-    public double getTax() {
-        return tax;
-    }
-
-    public void setTax(double tax) {
-        this.tax = tax;
-    }
-
-    public ProductsResponse getProductsResponse() {
-        return productsResponse;
-    }
-
-    public void setProductsResponse(ProductsResponse productsResponse) {
-        this.productsResponse = productsResponse;
-    }
 }

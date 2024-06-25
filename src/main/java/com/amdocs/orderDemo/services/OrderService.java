@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,23 +68,14 @@ public class OrderService {
 
 
 
-            //set name to response products and price
-
-
-
             Optional<ProductsResponse> optionalProductsResponse = productsClient.getProductById(product.getProductID());
-            //response.setProductsResponse(optionalProductsResponse.get());
             productsList.add(optionalProductsResponse.get());
-
-           response.setProducts(Arrays.asList(optionalProductsResponse.get()));
-
-
+            optionalProductsResponse.get().setQuantity(product.getQuantity());
+            response.setProducts(productsList);
 
 
-            response.setPricing(optionalProductsResponse.get().getPricing().getPrice());
-            response.setDiscount(optionalProductsResponse.get().getPricing().getDiscount());
-            response.setQuantityProducts(product.getQuantity());
-            response.setTax(optionalProductsResponse.get().getPricing().getTax());
+
+
 
         }
         response.setOrderId(order.getOrderId());
