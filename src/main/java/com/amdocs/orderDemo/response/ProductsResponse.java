@@ -1,25 +1,32 @@
 package com.amdocs.orderDemo.response;
 
 
-
-import java.time.LocalDate;
-
 public class ProductsResponse {
 
 
-    private PricingResponse pricingResponse;
+    private PricingResponse pricing;
 
     private String productName;
     private String description;
 
+    private Integer quantity;
 
-    private LocalDate date;
 
-    public ProductsResponse(String productName, String description, PricingResponse pricingResponse, LocalDate date) {
+
+
+    public ProductsResponse(String productName, String description, PricingResponse pricing,Integer quantity ) {
         this.productName = productName;
         this.description = description;
-        this.pricingResponse = pricingResponse;
-        this.date = date;
+        this.pricing = pricing;
+        this.quantity = quantity;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public String getProductName() {
@@ -42,19 +49,13 @@ public class ProductsResponse {
 
 
     public PricingResponse getPricing() {
-        return pricingResponse;
+        return pricing;
     }
 
 
     public void setPricing(PricingResponse pricing) {
-        this.pricingResponse = pricingResponse;
+        this.pricing = pricing;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
 }

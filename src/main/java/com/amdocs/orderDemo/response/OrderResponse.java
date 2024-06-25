@@ -2,10 +2,13 @@ package com.amdocs.orderDemo.response;
 
 import com.amdocs.orderDemo.Entities.Order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OrderResponse {
 
     private Integer orderId;
-    private String products;
+    private List<ProductsResponse> products = new ArrayList<>();
 
     private double pricing;
 
@@ -14,17 +17,30 @@ public class OrderResponse {
 
     private double discount;
 
+    private double tax;
+
+    private double totalDiscount;
+
+    private double totalPrice;
 
 
-    private CustomerResponse customerResponse;
+    private CustomerResponse customer;
 
-
+    private ProductsResponse productsResponse;
 
     public OrderResponse(Order order) {
     }
 
     public OrderResponse() {
 
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public Integer getOrderId() {
@@ -35,11 +51,11 @@ public class OrderResponse {
         this.orderId = orderId;
     }
 
-    public String getProducts() {
+    public List<ProductsResponse> getProducts() {
         return products;
     }
 
-    public void setProducts(String products) {
+    public void setProducts(List<ProductsResponse> products) {
         this.products = products;
     }
 
@@ -59,6 +75,23 @@ public class OrderResponse {
         this.quantityProducts = quantityProducts;
     }
 
+    public double getTotalDiscount() {
+        return totalDiscount;
+    }
+
+    public void setTotalDiscount(double totalDiscount) {
+        this.totalDiscount = totalDiscount;
+    }
+
+    public CustomerResponse getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(CustomerResponse customer) {
+        this.customer = customer;
+    }
+
+
     public double getDiscount() {
         return discount;
     }
@@ -67,15 +100,19 @@ public class OrderResponse {
         this.discount = discount;
     }
 
-
-    public CustomerResponse getCustomerResponse() {
-        return customerResponse;
+    public double getTax() {
+        return tax;
     }
 
-    public void setCustomerResponse(CustomerResponse customerResponse) {
-        this.customerResponse = customerResponse;
+    public void setTax(double tax) {
+        this.tax = tax;
     }
 
+    public ProductsResponse getProductsResponse() {
+        return productsResponse;
+    }
 
-
+    public void setProductsResponse(ProductsResponse productsResponse) {
+        this.productsResponse = productsResponse;
+    }
 }

@@ -5,6 +5,7 @@ import com.amdocs.orderDemo.request.OrderRequest;
 import com.amdocs.orderDemo.response.OrderResponse;
 import com.amdocs.orderDemo.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -20,9 +21,12 @@ public class OrderController {
 
 
     @RequestMapping(method = RequestMethod.POST, value = "/order")
-    public OrderResponse createOrder (@RequestBody OrderRequest orderRequest){
-        return orderService.createOrder(orderRequest);
+    public ResponseEntity<OrderResponse> createOrder (@RequestBody OrderRequest orderRequest){
+        OrderResponse orderResponse = orderService.createOrder(orderRequest);
+        return ResponseEntity.ok(orderResponse);
+
     }
+
 
 
     @RequestMapping(method = RequestMethod.GET,value = "/order/{orderId}")
@@ -30,4 +34,6 @@ public class OrderController {
         return orderService.getOrderById(orderId);
 
     }
+
+
 }

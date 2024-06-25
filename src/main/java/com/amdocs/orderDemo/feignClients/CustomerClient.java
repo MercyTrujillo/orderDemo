@@ -1,4 +1,4 @@
-package com.amdocs.orderDemo.feignClients.customer;
+package com.amdocs.orderDemo.feignClients;
 
 import com.amdocs.orderDemo.response.CustomerResponse;
 import org.springframework.cloud.openfeign.FeignClient;

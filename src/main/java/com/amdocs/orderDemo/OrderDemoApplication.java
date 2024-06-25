@@ -26,11 +26,6 @@ public class OrderDemoApplication {
 		log.info("Mercy Jacqueline Trujillo Rodriguezzzzzz");
 	}
 
-	/*@Bean
-	public WebClient webClient(){
-		WebClient webClient = WebClient.builder()
-				.baseUrl(customerUrl).build();
-		return  webClient;
-	}*/
+
 
 }
