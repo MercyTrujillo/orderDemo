@@ -5,7 +5,7 @@ import com.amdocs.orderDemo.Entities.Order;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderResponse {
+public class OrderResponse  {
 
     private Integer orderId;
     private CustomerResponse customer;
@@ -18,7 +18,7 @@ public class OrderResponse {
 
 
 
-    private double totalDiscount;
+    private double extraDiscount;
 
     private double totalPrice;
 
@@ -68,12 +68,12 @@ public class OrderResponse {
         this.totalQuantityProducts = totalQuantityProducts;
     }
 
-    public double getTotalDiscount() {
-        return totalDiscount;
+    public double getExtraDiscount() {
+        return extraDiscount;
     }
 
-    public void setTotalDiscount(double totalDiscount) {
-        this.totalDiscount = totalDiscount;
+    public void setExtraDiscount(double extraDiscount) {
+        this.extraDiscount = extraDiscount;
     }
 
     public CustomerResponse getCustomer() {

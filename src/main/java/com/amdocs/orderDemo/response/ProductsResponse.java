@@ -3,7 +3,7 @@ package com.amdocs.orderDemo.response;
 
 public class ProductsResponse {
 
-
+    private Integer productId;
     private PricingResponse pricing;
 
     private String productName;
@@ -14,11 +14,20 @@ public class ProductsResponse {
 
 
 
-    public ProductsResponse(String productName, String description, PricingResponse pricing,Integer quantity ) {
+    public ProductsResponse(String productName, String description, PricingResponse pricing,Integer quantity, Integer productId) {
         this.productName = productName;
         this.description = description;
         this.pricing = pricing;
         this.quantity = quantity;
+        this.productId = productId;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public Integer getQuantity() {

@@ -12,16 +12,17 @@ public class OrderRequest {
 
     private Integer quantityProducts;
 
-    private double totalDiscount;
+
+    private double extraDiscount;
 
     private Integer customerID;
     private Integer orderId;
 
-    public OrderRequest(List<ProductOrderRequest> products, double pricing, Integer quantityProducts, double totalDiscount, Integer customerID, Integer orderId) {
+    public OrderRequest(List<ProductOrderRequest> products, double pricing, Integer quantityProducts, double extraDiscount, Integer customerID, Integer orderId) {
         this.products = products;
         this.pricing = pricing;
         this.quantityProducts = quantityProducts;
-        this.totalDiscount = totalDiscount;
+        this.extraDiscount = extraDiscount;
         this.customerID = customerID;
         this.orderId = orderId;
     }
@@ -58,12 +59,12 @@ public class OrderRequest {
         this.quantityProducts = quantityProducts;
     }
 
-    public double getDiscount() {
-        return totalDiscount;
+    public double getExtraDiscount() {
+        return extraDiscount;
     }
 
-    public void setDiscount(double discount) {
-        this.totalDiscount = totalDiscount;
+    public void setExtraDiscount(double extraDiscount) {
+        this.extraDiscount = extraDiscount;
     }
 
     public Integer getCustomerID() {

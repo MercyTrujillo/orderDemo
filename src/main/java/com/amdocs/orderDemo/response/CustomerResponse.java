@@ -1,6 +1,6 @@
 package com.amdocs.orderDemo.response;
 
-public class CustomerResponse {
+public class CustomerResponse  {
 
     private String name;
 
@@ -33,4 +33,6 @@ public class CustomerResponse {
     public void setAddress(String address) {
         this.address = address;
     }
+
+
 }

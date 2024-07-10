@@ -7,20 +7,19 @@ public class ProductOrderResponse {
 
     private Integer productOrderId;
 
-    private Integer productID;
+    private Integer productId;
 
     private Integer quantity;
 
 
+    private Integer orderId;
 
-    private Integer orderID;
 
-
-    public ProductOrderResponse(Integer productOrderId, Integer productID, Integer quantity, Integer orderID) {
+    public ProductOrderResponse(Integer productOrderId, Integer productId, Integer quantity, Integer orderId) {
         this.productOrderId = productOrderId;
-        this.productID = productID;
+        this.productId = productId;
         this.quantity = quantity;
-        this.orderID = orderID;
+        this.orderId = orderId;
     }
 
     public Integer getProductOrderId() {
@@ -31,12 +30,12 @@ public class ProductOrderResponse {
         this.productOrderId = productOrderId;
     }
 
-    public Integer getProductID() {
-        return productID;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProductID(Integer productID) {
-        this.productID = productID;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public Integer getQuantity() {
@@ -47,11 +46,11 @@ public class ProductOrderResponse {
         this.quantity = quantity;
     }
 
-    public Integer getOrderID() {
-        return orderID;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrderID(Integer orderID) {
-        this.orderID = orderID;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 }

@@ -18,7 +18,7 @@ public class Order {
     @Column(name = "orderId")
     private Integer orderId;
 
-    private double totalDiscount;
+    private double extraDiscount;
 
     @Column(name = "customer_Id")
     private Integer customer;
@@ -32,9 +32,9 @@ public class Order {
     }
 
 
-    public Order(Integer orderId, double totalDiscount, Integer customer, LocalDate creationDate) {
+    public Order(Integer orderId, double extraDiscount, Integer customer, LocalDate creationDate) {
         this.orderId = orderId;
-        this.totalDiscount = totalDiscount;
+        this.extraDiscount = extraDiscount;
         this.customer = customer;
         this.creationDate = creationDate;
     }
@@ -48,12 +48,12 @@ public class Order {
     }
 
 
-    public double getTotalDiscount() {
-        return totalDiscount;
+    public double getExtraDiscount() {
+        return extraDiscount;
     }
 
-    public void setTotalDiscount(double totalDiscount) {
-        this.totalDiscount = totalDiscount;
+    public void setExtraDiscount(double extraDiscount) {
+        this.extraDiscount = extraDiscount;
     }
 
     public Integer getCustomer() {

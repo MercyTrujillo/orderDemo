@@ -1,6 +1,5 @@
 package com.amdocs.orderDemo.controller;
 
-import com.amdocs.orderDemo.Entities.Order;
 import com.amdocs.orderDemo.request.OrderRequest;
 import com.amdocs.orderDemo.response.OrderResponse;
 import com.amdocs.orderDemo.services.OrderService;
@@ -30,8 +29,9 @@ public class OrderController {
 
 
     @RequestMapping(method = RequestMethod.GET,value = "/order/{orderId}")
-    public Optional<Order> getOrderById(@PathVariable Integer orderId){
-        return orderService.getOrderById(orderId);
+    public ResponseEntity<OrderResponse> getOrderById(@PathVariable Integer orderId){
+         OrderResponse order = orderService.getOrderById(orderId);
+         return ResponseEntity.ok(order);
 
     }
 
