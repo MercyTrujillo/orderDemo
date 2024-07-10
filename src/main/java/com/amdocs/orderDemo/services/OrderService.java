@@ -87,6 +87,7 @@ public class OrderService {
             optionalProductsResponse.get().setQuantity(products.getQuantity());
             response.setTotalPrice(sumTotalPrice(optionalProductsResponse.get(), response.getExtraDiscount()));
         }
+        response.setTotalQuantityProducts(totalQuantityForProducts(response));
     }
 
 
@@ -109,6 +110,15 @@ public class OrderService {
         return totalQuantity;
 
     }
+    private  Integer totalQuantityForProducts (OrderResponse response){
+        Integer totalQuantity = 0;
+        for (ProductsResponse product : response.getProducts() ){
+            totalQuantity += product.getQuantity();
+        }
+        return totalQuantity;
+
+    }
+
 
 
     private Double sumTotalPrice( ProductsResponse productsResponse,Double extraDiscount){
@@ -185,5 +195,7 @@ public class OrderService {
     }
 
 
-
+    public OrderResponse deleteOrder(Integer orderId) {
+    return null;
+    }
 }
