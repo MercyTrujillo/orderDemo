@@ -5,6 +5,7 @@ import com.amdocs.orderDemo.request.OrderRequest;
 import com.amdocs.orderDemo.response.OrderResponse;
 import com.amdocs.orderDemo.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,10 +35,18 @@ public class OrderController {
 
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/order/{orderId}")
-    public ResponseEntity<OrderResponse> deleteOrder(@PathVariable Integer orderId){
-        OrderResponse order = orderService.deleteOrder(orderId);
-        return ResponseEntity.ok(order);
+    @DeleteMapping(value = "/order/{orderId}")
+    public ResponseEntity<String> deleteOrder(@PathVariable Integer orderId){
+        orderService.deleteOrder(orderId);
+        return ResponseEntity.ok("Order successfully removed");
+
+    }
+
+
+    @PatchMapping(value = "/order/{orderId}")
+    public ResponseEntity<OrderResponse> updateOrder(@PathVariable Integer orderId, @RequestBody OrderRequest newOrder ){
+        OrderResponse orderResponse = orderService.updateOrder(orderId, newOrder);
+        return ResponseEntity.ok(orderResponse);
     }
 
 

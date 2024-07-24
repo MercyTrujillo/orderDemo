@@ -10,7 +10,7 @@ import com.amdocs.orderDemo.request.ProductOrderRequest;
 import com.amdocs.orderDemo.response.*;
 import com.amdocs.orderDemo.repository.OrderRepository;
 import com.amdocs.orderDemo.request.OrderRequest;
-import org.aspectj.weaver.ast.Or;
+import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +38,7 @@ public class OrderService {
 
     @Autowired
     private ProductOrderClient productOrderClient;
+
 
 
     @Autowired
@@ -77,18 +78,25 @@ public class OrderService {
     private void  mapProducts(OrderResponse response, Integer orderId) {
         List<ProductsResponse> productsList = new ArrayList<>();
         totalOrder = 0.0;
-
         List<ProductOrderResponse> productOrderResponse = productOrderClient.findByOrderID(orderId);
         for (ProductOrderResponse products : productOrderResponse) {
-            System.out.println("pipirupu" + products.getProductId());
-            Optional<ProductsResponse> optionalProductsResponse = productsClient.getProductById(products.getProductId());
-            productsList.add(optionalProductsResponse.get());
-            response.setProducts(productsList);
-            optionalProductsResponse.get().setQuantity(products.getQuantity());
-            response.setTotalPrice(sumTotalPrice(optionalProductsResponse.get(), response.getExtraDiscount()));
+            Optional<ProductsResponse> optionalProductsResponse = productsClient.getProductById(products.getOrderId());
+            if(optionalProductsResponse.isPresent()){
+                productsList.add(optionalProductsResponse.get());
+                response.setProducts(productsList);
+                optionalProductsResponse.get().setQuantity(products.getQuantity());
+                response.setTotalPrice(sumTotalPrice(optionalProductsResponse.get(), response.getExtraDiscount()));
+            }
+            else {
+                log.error("En OrderService no value ");
+            }
+
         }
         response.setTotalQuantityProducts(totalQuantityForProducts(response));
     }
+
+
+
 
 
 
@@ -120,7 +128,6 @@ public class OrderService {
     }
 
 
-
     private Double sumTotalPrice( ProductsResponse productsResponse,Double extraDiscount){
 
         double totalPrice;
@@ -147,13 +154,8 @@ public class OrderService {
         System.out.println("descuento final : " +extraDiscount);
         System.out.println("total order : " + totalDiscount);
         System.out.println("----------------------------------------");
-
-
           return totalDiscount;
     }
-
-
-
 
 
 
@@ -176,26 +178,58 @@ public class OrderService {
     public OrderResponse getOrderById(Integer orderId) {
         OrderResponse response = new OrderResponse();
         Optional<Order> optionalOrder = orderRepository.findById(orderId);
-
         if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
-
             mapOrder(response, order);
             mapCustomer(response,order.getCustomer());
-
             mapProducts(response,order.getOrderId());
-            System.out.println("hola");
-
 
         }
-
-
 
         return response;
     }
 
 
-    public OrderResponse deleteOrder(Integer orderId) {
-    return null;
+    public void deleteOrder(Integer orderId) {
+     List<ProductOrderResponse> productOrderResponse = productOrderClient.findByOrderID(orderId);
+         for (ProductOrderResponse products : productOrderResponse) {
+             orderRepository.deleteById(orderId);
+             Integer productId = products.getProductOrderId();
+             productOrderClient.deleteProductOrder(productId);
+
+         }
+
+    }
+
+
+
+
+
+    public OrderResponse updateOrder(Integer orderId, OrderRequest newOrder) {
+
+        Order existingOrder = orderRepository.findById(orderId).orElseThrow(() -> new EntityNotFoundException("Order not found"));
+        existingOrder.setExtraDiscount(newOrder.getExtraDiscount());
+        existingOrder.setCustomer(newOrder.getCustomerID());
+        existingOrder.setOrderId(orderId);
+
+        //List<ProductOrderResponse> productOrderResponses = productOrderClient.findByOrderID(orderId);
+
+       OrderResponse response = new OrderResponse();
+
+
+                productOrderClient.updateProducts(orderId, newOrder.getProducts());
+
+
+                orderRepository.save(existingOrder);
+
+
+            mapProducts(response, orderId);
+           mapCustomer(response, newOrder.getCustomerID());
+            response.setOrderId(existingOrder.getOrderId());
+            response.setTotalQuantityProducts(totalQuantityProducts(newOrder));
+            response.setExtraDiscount(existingOrder.getExtraDiscount());
+
+            return response;
+
     }
 }
